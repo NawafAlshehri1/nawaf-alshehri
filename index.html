@@ -1,0 +1,2738 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لوحة معلومات NVIDIA المالية 2020-2025</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        :root {
+            --nvidia-green: #76B900;
+            --nvidia-dark: #000000;
+            --nvidia-gray: #1a1a1a;
+            --nvidia-gray-light: #2d2d2d;
+            --color-primary: #76B900;
+            --color-secondary: #00d4ff;
+            --color-accent: #9b59b6;
+            --color-warning: #ff9500;
+            --color-success: #76B900;
+            --color-danger: #ff4444;
+            --color-bg: #0a0a0a;
+            --color-card: rgba(26, 26, 26, 0.7);
+            --color-text: #ffffff;
+            --color-text-secondary: rgba(255, 255, 255, 0.7);
+            --shadow-glow: 0 0 30px rgba(118, 185, 0, 0.3);
+            --shadow-card: 0 8px 32px rgba(0, 0, 0, 0.4);
+            --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.6);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@200;300;400;500;600;700;800;900&family=Cairo:wght@300;400;500;600;700;800;900&display=swap');
+
+        body {
+            font-family: 'Tajawal', 'Cairo', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            text-rendering: optimizeLegibility;
+            background: var(--color-bg);
+            background-image: 
+                radial-gradient(circle at 20% 30%, rgba(118, 185, 0, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(0, 212, 255, 0.08) 0%, transparent 50%),
+                url('https://pplx-res.cloudinary.com/image/upload/v1754694422/pplx_project_search_images/ff80f45f98dbf5dc48bbc026648a254b2c0f4cd5.png');
+            background-size: 100% 100%, 100% 100%, cover;
+            background-position: center, center, center;
+            background-attachment: fixed;
+            background-blend-mode: overlay;
+            color: var(--color-text);
+            min-height: 100vh;
+            padding-bottom: 2rem;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(118, 185, 0, 0.03) 2px, rgba(118, 185, 0, 0.03) 4px),
+                repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(118, 185, 0, 0.03) 2px, rgba(118, 185, 0, 0.03) 4px);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        body::after {
+            content: '';
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 600px;
+            height: 600px;
+            background: url('https://pplx-res.cloudinary.com/image/upload/v1758606890/pplx_project_search_images/66f069d1efdd06a8e70ec41bcc2952553534d767.png') no-repeat center;
+            background-size: contain;
+            opacity: 0.03;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 1rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Header */
+        .header {
+            background: rgba(26, 26, 26, 0.8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(118, 185, 0, 0.2);
+            color: white;
+            padding: 1.5rem 0;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(118, 185, 0, 0.1);
+            margin-bottom: 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            animation: slideDown 0.6s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .header h1 {
+            font-size: 1.9rem;
+            font-weight: 700;
+            letter-spacing: 0.3px;
+            text-shadow: 0 2px 8px rgba(118, 185, 0, 0.3);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            background: url('https://pplx-res.cloudinary.com/image/upload/v1758606890/pplx_project_search_images/66f069d1efdd06a8e70ec41bcc2952553534d767.png') no-repeat center;
+            background-size: contain;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            filter: drop-shadow(0 0 10px rgba(118, 185, 0, 0.5));
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                filter: drop-shadow(0 0 10px rgba(118, 185, 0, 0.5));
+            }
+            50% {
+                filter: drop-shadow(0 0 20px rgba(118, 185, 0, 0.8));
+            }
+        }
+
+        /* Navigation */
+        .nav-tabs {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            background: rgba(45, 45, 45, 0.4);
+            backdrop-filter: blur(10px);
+            padding: 0.5rem;
+            border-radius: 12px;
+            border: 1px solid rgba(118, 185, 0, 0.2);
+        }
+
+        .nav-tab {
+            background: transparent;
+            color: var(--color-text-secondary);
+            border: 1px solid transparent;
+            padding: 0.7rem 1.2rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            letter-spacing: 0.3px;
+            position: relative;
+            overflow: hidden;
+            font-family: 'Tajawal', sans-serif;
+        }
+
+        .nav-tab::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(118, 185, 0, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .nav-tab:hover {
+            background: rgba(118, 185, 0, 0.1);
+            color: var(--nvidia-green);
+            border-color: rgba(118, 185, 0, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .nav-tab:hover::before {
+            left: 100%;
+        }
+
+        .nav-tab.active {
+            background: var(--nvidia-green);
+            color: #000;
+            box-shadow: 0 0 20px rgba(118, 185, 0, 0.5), 0 4px 12px rgba(0, 0, 0, 0.3);
+            border-color: var(--nvidia-green);
+            font-weight: 800;
+            letter-spacing: 0.5px;
+        }
+
+        /* Page Content */
+        .page {
+            display: none;
+        }
+
+        .page.active {
+            display: block;
+            animation: fadeIn 0.4s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* KPI Cards */
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .kpi-card {
+            background: rgba(26, 26, 26, 0.6);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(118, 185, 0, 0.2);
+            border-radius: 20px;
+            padding: 1.5rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            animation: scaleIn 0.5s ease-out backwards;
+        }
+
+        .kpi-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--card-color), transparent);
+        }
+
+        .kpi-card::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(118, 185, 0, 0.2), transparent);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s ease, height 0.6s ease;
+        }
+
+        .kpi-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 12px 48px rgba(0, 0, 0, 0.6), 0 0 30px rgba(118, 185, 0, 0.3);
+            border-color: var(--nvidia-green);
+        }
+
+        .kpi-card:hover::after {
+            width: 300px;
+            height: 300px;
+        }
+
+        .kpi-card.blue::before { --card-color: #76B900; }
+        .kpi-card.green::before { --card-color: #00d4ff; }
+        .kpi-card.purple::before { --card-color: #9b59b6; }
+        .kpi-card.orange::before { --card-color: #ff9500; }
+
+        .kpi-card:nth-child(1) { animation-delay: 0.1s; }
+        .kpi-card:nth-child(2) { animation-delay: 0.2s; }
+        .kpi-card:nth-child(3) { animation-delay: 0.3s; }
+        .kpi-card:nth-child(4) { animation-delay: 0.4s; }
+
+        .kpi-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .kpi-title {
+            font-size: 0.9rem;
+            color: var(--color-text-secondary);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            font-family: 'Cairo', sans-serif;
+        }
+
+        .kpi-icon {
+            width: 45px;
+            height: 45px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .kpi-card:hover .kpi-icon {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .kpi-card.blue .kpi-icon { 
+            background: rgba(118, 185, 0, 0.15);
+            box-shadow: 0 0 20px rgba(118, 185, 0, 0.3);
+        }
+        .kpi-card.green .kpi-icon { 
+            background: rgba(0, 212, 255, 0.15);
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
+        }
+        .kpi-card.purple .kpi-icon { 
+            background: rgba(155, 89, 182, 0.15);
+            box-shadow: 0 0 20px rgba(155, 89, 182, 0.3);
+        }
+        .kpi-card.orange .kpi-icon { 
+            background: rgba(255, 149, 0, 0.15);
+            box-shadow: 0 0 20px rgba(255, 149, 0, 0.3);
+        }
+
+        .kpi-value {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: var(--nvidia-green);
+            margin-bottom: 0.5rem;
+            text-shadow: 0 0 15px rgba(118, 185, 0, 0.5);
+            letter-spacing: -0.3px;
+            font-family: 'Cairo', sans-serif;
+        }
+
+        .kpi-subtitle {
+            font-size: 0.85rem;
+            color: var(--color-text-secondary);
+            font-weight: 400;
+        }
+
+        /* Chart Cards */
+        .chart-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .chart-card {
+            background: rgba(26, 26, 26, 0.6);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(118, 185, 0, 0.2);
+            border-radius: 20px;
+            padding: 1.5rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            transition: all 0.4s ease;
+            animation: fadeIn 0.6s ease-out;
+        }
+
+        .chart-card:hover {
+            border-color: var(--nvidia-green);
+            box-shadow: 0 12px 48px rgba(0, 0, 0, 0.6), 0 0 20px rgba(118, 185, 0, 0.2);
+        }
+
+        .chart-card.full-width {
+            grid-column: 1 / -1;
+        }
+
+        .chart-header {
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid rgba(118, 185, 0, 0.2);
+            position: relative;
+        }
+
+        .chart-header::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 60px;
+            height: 2px;
+            background: var(--nvidia-green);
+            box-shadow: 0 0 10px var(--nvidia-green);
+        }
+
+        .chart-title {
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: var(--color-text);
+            text-shadow: 0 2px 8px rgba(118, 185, 0, 0.2);
+            letter-spacing: 0.2px;
+            font-family: 'Cairo', sans-serif;
+        }
+
+        .chart-container {
+            position: relative;
+            height: 350px;
+        }
+
+        .chart-container.small {
+            height: 250px;
+        }
+
+        /* Table */
+        .table-container {
+            background: rgba(26, 26, 26, 0.6);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(118, 185, 0, 0.2);
+            border-radius: 20px;
+            padding: 1.5rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            overflow-x: auto;
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+        }
+
+        .data-table th {
+            background: linear-gradient(135deg, var(--nvidia-green) 0%, #5d9400 100%);
+            color: #000;
+            padding: 1rem;
+            text-align: center;
+            font-weight: 800;
+            white-space: nowrap;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+            font-size: 0.95rem;
+            letter-spacing: 0.3px;
+            font-family: 'Cairo', sans-serif;
+        }
+
+        .data-table th:first-child {
+            border-radius: 8px 0 0 0;
+        }
+
+        .data-table th:last-child {
+            border-radius: 0 8px 0 0;
+        }
+
+        .data-table td {
+            padding: 0.9rem 1rem;
+            text-align: center;
+            border-bottom: 1px solid rgba(118, 185, 0, 0.1);
+            color: var(--color-text-secondary);
+            font-family: 'Tajawal', sans-serif;
+            font-weight: 500;
+        }
+
+        .data-table tbody tr {
+            transition: all 0.3s ease;
+        }
+
+        .data-table tbody tr:hover {
+            background: rgba(118, 185, 0, 0.1);
+            transform: scale(1.01);
+        }
+
+        .data-table tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        .positive {
+            color: var(--nvidia-green);
+            font-weight: 700;
+            text-shadow: 0 0 10px rgba(118, 185, 0, 0.5);
+        }
+
+        .positive::before {
+            content: '▲ ';
+            font-size: 0.8em;
+        }
+
+        .negative {
+            color: #ff4444;
+            font-weight: 700;
+            text-shadow: 0 0 10px rgba(255, 68, 68, 0.5);
+        }
+
+        .negative::before {
+            content: '▼ ';
+            font-size: 0.8em;
+        }
+
+        /* Comparison Controls */
+        .comparison-controls {
+            background: rgba(26, 26, 26, 0.6);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(118, 185, 0, 0.2);
+            border-radius: 20px;
+            padding: 1.5rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            margin-bottom: 2rem;
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .control-group {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .control-group label {
+            display: block;
+            font-size: 0.95rem;
+            font-weight: 800;
+            color: var(--nvidia-green);
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            font-family: 'Cairo', sans-serif;
+        }
+
+        .control-group select {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 2px solid rgba(118, 185, 0, 0.3);
+            border-radius: 12px;
+            font-size: 1rem;
+            background: rgba(45, 45, 45, 0.8);
+            color: var(--color-text);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Tajawal', sans-serif;
+        }
+
+        .control-group select:focus {
+            outline: none;
+            border-color: var(--nvidia-green);
+            box-shadow: 0 0 0 3px rgba(118, 185, 0, 0.2), 0 0 20px rgba(118, 185, 0, 0.3);
+            background: rgba(45, 45, 45, 1);
+        }
+
+        .control-group select:hover {
+            border-color: var(--nvidia-green);
+        }
+
+        .compare-btn {
+            background: linear-gradient(135deg, var(--nvidia-green) 0%, #5d9400 100%);
+            color: #000;
+            border: none;
+            padding: 0.9rem 2.2rem;
+            border-radius: 12px;
+            font-size: 1.05rem;
+            font-weight: 800;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 1.8rem;
+            box-shadow: 0 4px 15px rgba(118, 185, 0, 0.4);
+            position: relative;
+            overflow: hidden;
+            letter-spacing: 0.5px;
+            font-family: 'Cairo', sans-serif;
+        }
+
+        .compare-btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s ease, height 0.6s ease;
+        }
+
+        .compare-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 25px rgba(118, 185, 0, 0.6), 0 0 30px rgba(118, 185, 0, 0.3);
+        }
+
+        .compare-btn:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .compare-btn:active {
+            transform: translateY(-1px);
+        }
+
+        /* Developer Info Banner */
+        .developer-banner {
+            background: rgba(26, 26, 26, 0.7);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(118, 185, 0, 0.25);
+            border-radius: 16px;
+            padding: 1.5rem 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            transition: all 0.4s ease;
+            animation: slideInFromTop 0.6s ease-out;
+            position: relative;
+            overflow: hidden;
+        }
+
+        @keyframes slideInFromTop {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .developer-banner::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--nvidia-green), #00d4ff, var(--nvidia-green));
+            box-shadow: 0 0 15px var(--nvidia-green);
+        }
+
+        .developer-banner:hover {
+            border-color: var(--nvidia-green);
+            box-shadow: 0 12px 48px rgba(0, 0, 0, 0.6), 0 0 30px rgba(118, 185, 0, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .developer-content {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .developer-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--nvidia-green) 0%, #5d9400 50%, #00d4ff 100%);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            box-shadow: 0 8px 30px rgba(118, 185, 0, 0.6), inset 0 2px 4px rgba(255, 255, 255, 0.3), 0 0 40px rgba(118, 185, 0, 0.4);
+            animation: iconPulseGlow 3s ease-in-out infinite;
+            flex-shrink: 0;
+            border: 3px solid rgba(118, 185, 0, 0.6);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .developer-icon::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transform: rotate(45deg);
+            animation: iconShine 4s ease-in-out infinite;
+        }
+
+        @keyframes iconPulseGlow {
+            0%, 100% {
+                box-shadow: 0 8px 30px rgba(118, 185, 0, 0.6), inset 0 2px 4px rgba(255, 255, 255, 0.3), 0 0 40px rgba(118, 185, 0, 0.4);
+                transform: scale(1);
+            }
+            50% {
+                box-shadow: 0 8px 40px rgba(118, 185, 0, 0.8), inset 0 2px 4px rgba(255, 255, 255, 0.3), 0 0 60px rgba(118, 185, 0, 0.6);
+                transform: scale(1.05);
+            }
+        }
+
+        @keyframes iconShine {
+            0% {
+                left: -150%;
+            }
+            100% {
+                left: 150%;
+            }
+        }
+
+        .developer-info {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .developer-label {
+            font-size: 0.9rem;
+            color: var(--nvidia-green);
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 0 15px rgba(118, 185, 0, 0.5);
+            font-family: 'Cairo', sans-serif;
+        }
+
+        .developer-name {
+            font-size: 2.2rem;
+            font-weight: 900;
+            color: #FFFFFF;
+            margin-bottom: 0.7rem;
+            text-shadow: 0 3px 12px rgba(118, 185, 0, 0.4), 0 2px 4px rgba(0, 0, 0, 0.3);
+            letter-spacing: 0.5px;
+            font-family: 'Cairo', sans-serif;
+        }
+
+        .developer-bio {
+            font-size: 1rem;
+            color: #D0D0D0;
+            line-height: 1.7;
+            margin-bottom: 1rem;
+            font-weight: 400;
+            letter-spacing: 0.2px;
+            max-width: 700px;
+            font-family: 'Tajawal', sans-serif;
+        }
+
+        .developer-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            background: #0077B5;
+            color: #ffffff;
+            padding: 0.7rem 1.4rem;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(0, 119, 181, 0.4);
+            letter-spacing: 0.3px;
+            font-family: 'Tajawal', sans-serif;
+        }
+
+        .developer-link:hover {
+            background: #005885;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(0, 119, 181, 0.5);
+            color: #ffffff;
+        }
+
+        .linkedin-icon {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
+        }
+
+        /* Footer */
+        .footer {
+            background: rgba(26, 26, 26, 0.7);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-top: 1px solid rgba(118, 185, 0, 0.2);
+            padding: 1.5rem 0;
+            margin-top: 3rem;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .footer-content {
+            color: var(--color-text-secondary);
+            font-size: 0.95rem;
+            font-weight: 500;
+            letter-spacing: 0.2px;
+            font-family: 'Tajawal', sans-serif;
+        }
+
+        .footer-content strong {
+            color: var(--nvidia-green);
+            font-weight: 700;
+        }
+
+        /* Responsive */
+        /* Loading Animation */
+        @keyframes shimmer {
+            0% {
+                background-position: -1000px 0;
+            }
+            100% {
+                background-position: 1000px 0;
+            }
+        }
+
+        .loading {
+            animation: shimmer 2s infinite linear;
+            background: linear-gradient(90deg, 
+                transparent 0%, 
+                rgba(118, 185, 0, 0.2) 50%, 
+                transparent 100%);
+            background-size: 1000px 100%;
+        }
+
+        /* Scrollbar Styling */
+        ::-webkit-scrollbar {
+            width: 10px;
+            height: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(26, 26, 26, 0.5);
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, var(--nvidia-green) 0%, #5d9400 100%);
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(118, 185, 0, 0.5);
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--nvidia-green);
+        }
+
+        @media (max-width: 768px) {
+            .developer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .developer-name {
+                font-size: 1.5rem;
+            }
+
+            .developer-bio {
+                font-size: 0.88rem;
+            }
+
+            .developer-banner {
+                padding: 1.2rem 1rem;
+            }
+
+            .header h1 {
+                font-size: 1.1rem;
+            }
+
+            .nav-tabs {
+                justify-content: center;
+            }
+
+            .nav-tab {
+                padding: 0.6rem 0.8rem;
+                font-size: 0.8rem;
+            }
+
+            .chart-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .kpi-value {
+                font-size: 1.8rem;
+            }
+
+            .chart-container {
+                height: 300px;
+            }
+
+            body::after {
+                width: 400px;
+                height: 400px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .kpi-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .comparison-controls {
+                flex-direction: column;
+            }
+
+            .compare-btn {
+                width: 100%;
+                margin-top: 0;
+            }
+
+            .logo-icon {
+                width: 40px;
+                height: 40px;
+            }
+
+            .header h1 {
+                font-size: 0.95rem;
+            }
+        }
+
+        /* Smooth Scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Selection Style */
+        ::selection {
+            background: rgba(118, 185, 0, 0.3);
+            color: var(--color-text);
+        }
+
+        /* Focus Visible */
+        *:focus-visible {
+            outline: 2px solid var(--nvidia-green);
+            outline-offset: 2px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-icon"></div>
+                    <h1>لوحة معلومات NVIDIA المالية 2020-2025</h1>
+                </div>
+                <nav class="nav-tabs">
+                    <button class="nav-tab active" onclick="showPage('dashboard')">📊 النظرة العامة</button>
+                    <button class="nav-tab" onclick="showPage('profitability')">💰 الربحية</button>
+                    <button class="nav-tab" onclick="showPage('balance-sheet')">📈 الميزانية</button>
+                    <button class="nav-tab" onclick="showPage('cash-flow')">💵 التدفقات النقدية</button>
+                    <button class="nav-tab" onclick="showPage('comparison')">🔄 المقارنة</button>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Developer Info Banner -->
+    <div class="container">
+        <div class="developer-banner">
+            <div class="developer-content">
+                <div class="developer-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: #000; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="12" cy="7" r="4"></circle>
+                        <path d="M12 14l6-3-6-3-6 3 6 3z" opacity="0.5"></path>
+                        <polygon points="12 2 2 7 12 12 22 7 12 2" opacity="0.3"></polygon>
+                    </svg>
+                </div>
+                <div class="developer-info">
+                    <div class="developer-label">إعداد</div>
+                    <h2 class="developer-name">نواف الشهري</h2>
+                    <p style="font-size: 1.05rem; color: var(--nvidia-green); font-weight: 600; margin-bottom: 0.8rem; letter-spacing: 0.3px; font-family: 'Tajawal', sans-serif;">AI &amp; Operational Excellence Specialist</p>
+                    <p class="developer-bio">
+                        متخصص في الذكاء الاصطناعي والتميز التشغيلي | تحليل البيانات | أتمتة العمليات | التحول الرقمي | تجربة العملاء. معتمد من Google في تحليل البيانات، متحمس لتحسين أداء الأعمال من خلال الأتمتة والتحليلات والابتكار المتمحور حول العملاء.
+                    </p>
+                    <a href="https://www.linkedin.com/in/nawaf-alshehri22/" target="_blank" class="developer-link">
+                        <svg class="linkedin-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                        </svg>
+                        LinkedIn Profile
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="container">
+        <!-- Dashboard Page -->
+        <div id="dashboard" class="page active">
+            <!-- KPI Cards -->
+            <div class="kpi-grid">
+                <div class="kpi-card blue">
+                    <div class="kpi-header">
+                        <span class="kpi-title">الإيرادات الإجمالية 2025</span>
+                        <div class="kpi-icon">💵</div>
+                    </div>
+                    <div class="kpi-value">$130.50</div>
+                    <div class="kpi-subtitle">مليار دولار</div>
+                </div>
+                <div class="kpi-card green">
+                    <div class="kpi-header">
+                        <span class="kpi-title">صافي الدخل 2025</span>
+                        <div class="kpi-icon">📈</div>
+                    </div>
+                    <div class="kpi-value">$72.88</div>
+                    <div class="kpi-subtitle">مليار دولار</div>
+                </div>
+                <div class="kpi-card purple">
+                    <div class="kpi-header">
+                        <span class="kpi-title">ربحية السهم 2025</span>
+                        <div class="kpi-icon">📊</div>
+                    </div>
+                    <div class="kpi-value">$3.00</div>
+                    <div class="kpi-subtitle">دولار للسهم</div>
+                </div>
+                <div class="kpi-card orange">
+                    <div class="kpi-header">
+                        <span class="kpi-title">العائد على حقوق المساهمين 2025</span>
+                        <div class="kpi-icon">💎</div>
+                    </div>
+                    <div class="kpi-value">92%</div>
+                    <div class="kpi-subtitle">ROE</div>
+                </div>
+            </div>
+
+            <!-- Charts -->
+            <div class="chart-grid">
+                <div class="chart-card full-width">
+                    <div class="chart-header">
+                        <h3 class="chart-title">تطور الإيرادات وصافي الدخل (2020-2025)</h3>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="revenueNetIncomeChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="chart-card">
+                    <div class="chart-header">
+                        <h3 class="chart-title">النمو السنوي للإيرادات</h3>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="revenueGrowthChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="chart-card">
+                    <div class="chart-header">
+                        <h3 class="chart-title">الدخل التشغيلي والإجمالي</h3>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="operatingGrossChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Summary Table -->
+            <div class="table-container">
+                <div class="chart-header">
+                    <h3 class="chart-title">ملخص البيانات المالية السنوية</h3>
+                </div>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>السنة</th>
+                            <th>الإيرادات (مليار $)</th>
+                            <th>صافي الدخل (مليار $)</th>
+                            <th>الدخل التشغيلي (مليار $)</th>
+                            <th>إجمالي الربح (مليار $)</th>
+                            <th>ربحية السهم ($)</th>
+                        </tr>
+                    </thead>
+                    <tbody id="summaryTableBody"></tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Profitability Page -->
+        <div id="profitability" class="page">
+            <div class="chart-grid">
+                <div class="chart-card full-width">
+                    <div class="chart-header">
+                        <h3 class="chart-title">تطور الهوامش الربحية عبر السنوات</h3>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="marginsLineChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="chart-card">
+                    <div class="chart-header">
+                        <h3 class="chart-title">مقارنة الهوامش 2025</h3>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="margins2025Chart"></canvas>
+                    </div>
+                </div>
+
+                <div class="chart-card">
+                    <div class="chart-header">
+                        <h3 class="chart-title">المصروفات التشغيلية</h3>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="expensesChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <div class="table-container">
+                <div class="chart-header">
+                    <h3 class="chart-title">تفاصيل الربحية السنوية</h3>
+                </div>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>السنة</th>
+                            <th>هامش الربح الإجمالي (%)</th>
+                            <th>هامش الدخل التشغيلي (%)</th>
+                            <th>هامش صافي الدخل (%)</th>
+                            <th>البحث والتطوير (مليار $)</th>
+                            <th>البيع والإدارة (مليار $)</th>
+                        </tr>
+                    </thead>
+                    <tbody id="profitabilityTableBody"></tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Balance Sheet Page -->
+        <div id="balance-sheet" class="page">
+            <div class="chart-grid">
+                <div class="chart-card">
+                    <div class="chart-header">
+                        <h3 class="chart-title">توزيع الميزانية العمومية 2025</h3>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="balancePieChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="chart-card">
+                    <div class="chart-header">
+                        <h3 class="chart-title">مقارنة الأصول والالتزامات وحقوق المساهمين</h3>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="assetsLiabilitiesChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="chart-card full-width">
+                    <div class="chart-header">
+                        <h3 class="chart-title">تطور الميزانية العمومية عبر السنوات</h3>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="balanceEvolutionChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <div class="table-container">
+                <div class="chart-header">
+                    <h3 class="chart-title">بيانات الميزانية العمومية السنوية</h3>
+                </div>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>السنة</th>
+                            <th>إجمالي الأصول (مليار $)</th>
+                            <th>إجمالي الالتزامات (مليار $)</th>
+                            <th>حقوق المساهمين (مليار $)</th>
+                            <th>إجمالي الديون (مليار $)</th>
+                            <th>النقد (مليار $)</th>
+                        </tr>
+                    </thead>
+                    <tbody id="balanceSheetTableBody"></tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Cash Flow Page -->
+        <div id="cash-flow" class="page">
+            <div class="chart-grid">
+                <div class="chart-card full-width">
+                    <div class="chart-header">
+                        <h3 class="chart-title">تطور التدفقات النقدية (2020-2025)</h3>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="cashFlowLineChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="chart-card">
+                    <div class="chart-header">
+                        <h3 class="chart-title">التدفق النقدي التشغيلي مقابل الحر</h3>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="cashFlowBarChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="chart-card">
+                    <div class="chart-header">
+                        <h3 class="chart-title">مقارنة التدفق النقدي وصافي الدخل</h3>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="cashFlowVsNetIncomeChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <div class="table-container">
+                <div class="chart-header">
+                    <h3 class="chart-title">بيانات التدفقات النقدية السنوية</h3>
+                </div>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>السنة</th>
+                            <th>التدفق النقدي التشغيلي (مليار $)</th>
+                            <th>التدفق النقدي الحر (مليار $)</th>
+                            <th>صافي الدخل (مليار $)</th>
+                            <th>النقد (مليار $)</th>
+                        </tr>
+                    </thead>
+                    <tbody id="cashFlowTableBody"></tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Comparison Page -->
+        <div id="comparison" class="page">
+            <div class="comparison-controls">
+                <div class="control-group">
+                    <label for="year1">السنة الأولى</label>
+                    <select id="year1">
+                        <option value="0">2020</option>
+                        <option value="1">2021</option>
+                        <option value="2">2022</option>
+                        <option value="3">2023</option>
+                        <option value="4">2024</option>
+                        <option value="5" selected>2025</option>
+                    </select>
+                </div>
+                <div class="control-group">
+                    <label for="year2">السنة الثانية</label>
+                    <select id="year2">
+                        <option value="0">2020</option>
+                        <option value="1">2021</option>
+                        <option value="2">2022</option>
+                        <option value="3">2023</option>
+                        <option value="4" selected>2024</option>
+                        <option value="5">2025</option>
+                    </select>
+                </div>
+                <button class="compare-btn" onclick="compareYears()">مقارنة</button>
+            </div>
+
+            <div class="kpi-grid" id="comparisonKPIs"></div>
+
+            <div class="chart-grid">
+                <div class="chart-card">
+                    <div class="chart-header">
+                        <h3 class="chart-title">مقارنة الإيرادات والدخل</h3>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="comparisonRevenueChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="chart-card">
+                    <div class="chart-header">
+                        <h3 class="chart-title">مقارنة الهوامش الربحية</h3>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="comparisonMarginsChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <div class="table-container">
+                <div class="chart-header">
+                    <h3 class="chart-title">جدول المقارنة الشامل</h3>
+                </div>
+                <table class="data-table" id="comparisonTable">
+                    <thead>
+                        <tr>
+                            <th>المؤشر</th>
+                            <th id="compYear1Header">2025</th>
+                            <th id="compYear2Header">2024</th>
+                            <th>الفرق</th>
+                            <th>نسبة التغير (%)</th>
+                        </tr>
+                    </thead>
+                    <tbody id="comparisonTableBody"></tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Data
+        const data = {
+            years: [2020, 2021, 2022, 2023, 2024, 2025],
+            revenue: [10.92, 16.68, 26.91, 26.97, 60.92, 130.50],
+            netIncome: [2.80, 4.33, 9.75, 4.37, 29.76, 72.88],
+            operatingIncome: [2.85, 4.53, 10.04, 4.22, 32.97, 81.45],
+            grossProfit: [6.77, 10.40, 17.48, 15.36, 44.30, 97.86],
+            grossMargin: [62, 62, 65, 57, 73, 75],
+            operatingMargin: [26, 27, 37, 16, 54, 62],
+            netMargin: [26, 26, 36, 16, 49, 56],
+            totalAssets: [17.32, 28.79, 44.19, 41.18, 65.73, 111.60],
+            totalLiabilities: [5.11, 11.90, 17.58, 19.08, 22.75, 32.27],
+            totalEquity: [12.20, 16.89, 26.61, 22.10, 42.98, 79.33],
+            totalDebt: [2.64, 7.72, 11.83, 12.03, 11.06, 10.27],
+            cash: [10.90, 0.85, 1.99, 3.39, 7.28, 8.59],
+            operatingCF: [4.76, 5.82, 9.11, 5.64, 28.09, 64.09],
+            freeCF: [4.27, 4.69, 8.13, 3.81, 27.02, 60.85],
+            eps: [0.00, 0.00, 0.00, 0.00, 1.00, 3.00],
+            roa: [16, 15, 22, 11, 45, 65],
+            roe: [23, 26, 37, 20, 69, 92],
+            rdExpenses: [2.83, 3.92, 5.27, 7.34, 8.67, 12.91],
+            sgaExpenses: [1.09, 1.94, 2.17, 2.44, 2.65, 3.49]
+        };
+
+        const chartColors = [
+            '#76B900',  // NVIDIA Green
+            '#00d4ff',  // Cyan
+            '#9b59b6',  // Purple
+            '#ff9500',  // Orange
+            '#4CAF50',  // Success Green
+            '#ff4444',  // Red
+            '#FFD700',  // Gold
+            '#00CED1',  // Dark Turquoise
+            '#FF1493',  // Deep Pink
+            '#32CD32'   // Lime Green
+        ];
+
+        let charts = {};
+
+        // Page Navigation
+        function showPage(pageId) {
+            document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
+            document.querySelectorAll('.nav-tab').forEach(tab => tab.classList.remove('active'));
+            document.getElementById(pageId).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        // Initialize Dashboard Charts
+        function initDashboardCharts() {
+            // Revenue and Net Income Chart
+            const ctx1 = document.getElementById('revenueNetIncomeChart').getContext('2d');
+            charts.revenueNetIncome = new Chart(ctx1, {
+                type: 'line',
+                data: {
+                    labels: data.years,
+                    datasets: [
+                        {
+                            label: 'الإيرادات (مليار $)',
+                            data: data.revenue,
+                            borderColor: chartColors[0],
+                            backgroundColor: chartColors[0] + '33',
+                            borderWidth: 3,
+                            fill: true,
+                            tension: 0.4,
+                            pointRadius: 5,
+                            pointHoverRadius: 7,
+                            pointBackgroundColor: chartColors[0],
+                            pointBorderColor: '#000',
+                            pointBorderWidth: 2
+                        },
+                        {
+                            label: 'صافي الدخل (مليار $)',
+                            data: data.netIncome,
+                            borderColor: chartColors[1],
+                            backgroundColor: chartColors[1] + '33',
+                            borderWidth: 3,
+                            fill: true,
+                            tension: 0.4,
+                            pointRadius: 5,
+                            pointHoverRadius: 7,
+                            pointBackgroundColor: chartColors[1],
+                            pointBorderColor: '#000',
+                            pointBorderWidth: 2
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: true,
+                            position: 'top',
+                            labels: {
+                                color: '#ffffff',
+                                font: {
+                                    size: 13,
+                                    family: 'Tajawal',
+                                    weight: '600'
+                                },
+                                padding: 15
+                            }
+                        },
+                        tooltip: {
+                            backgroundColor: 'rgba(26, 26, 26, 0.95)',
+                            titleColor: '#76B900',
+                            bodyColor: '#ffffff',
+                            borderColor: '#76B900',
+                            borderWidth: 1,
+                            padding: 12,
+                            cornerRadius: 8
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            grid: {
+                                color: 'rgba(118, 185, 0, 0.1)',
+                                drawBorder: false
+                            },
+                            ticks: {
+                                color: '#ffffff',
+                                font: {
+                                    family: 'Tajawal'
+                                }
+                            }
+                        },
+                        x: {
+                            grid: {
+                                color: 'rgba(118, 185, 0, 0.1)',
+                                drawBorder: false
+                            },
+                            ticks: {
+                                color: '#ffffff',
+                                font: {
+                                    family: 'Tajawal',
+                                    weight: '600'
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+
+            // Revenue Growth Chart
+            const revenueGrowth = data.revenue.map((val, idx) => 
+                idx > 0 ? ((val - data.revenue[idx-1]) / data.revenue[idx-1] * 100).toFixed(1) : 0
+            );
+            const ctx2 = document.getElementById('revenueGrowthChart').getContext('2d');
+            charts.revenueGrowth = new Chart(ctx2, {
+                type: 'bar',
+                data: {
+                    labels: data.years,
+                    datasets: [{
+                        label: 'النمو السنوي (%)',
+                        data: revenueGrowth,
+                        backgroundColor: revenueGrowth.map(val => 
+                            val >= 0 ? chartColors[0] : chartColors[5]
+                        ),
+                        borderRadius: 8,
+                        borderWidth: 2,
+                        borderColor: '#000'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            backgroundColor: 'rgba(26, 26, 26, 0.95)',
+                            titleColor: '#76B900',
+                            bodyColor: '#ffffff',
+                            borderColor: '#76B900',
+                            borderWidth: 1,
+                            padding: 12,
+                            cornerRadius: 8
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            grid: {
+                                color: 'rgba(118, 185, 0, 0.1)',
+                                drawBorder: false
+                            },
+                            ticks: {
+                                color: '#ffffff',
+                                font: {
+                                    family: 'Tajawal'
+                                },
+                                callback: function(value) {
+                                    return value + '%';
+                                }
+                            }
+                        },
+                        x: {
+                            grid: {
+                                display: false
+                            },
+                            ticks: {
+                                color: '#ffffff',
+                                font: {
+                                    family: 'Tajawal',
+                                    weight: '600'
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+
+            // Operating and Gross Profit Chart
+            const ctx3 = document.getElementById('operatingGrossChart').getContext('2d');
+            charts.operatingGross = new Chart(ctx3, {
+                type: 'bar',
+                data: {
+                    labels: data.years,
+                    datasets: [
+                        {
+                            label: 'الدخل التشغيلي (مليار $)',
+                            data: data.operatingIncome,
+                            backgroundColor: chartColors[2],
+                            borderRadius: 8,
+                            borderWidth: 2,
+                            borderColor: '#000'
+                        },
+                        {
+                            label: 'إجمالي الربح (مليار $)',
+                            data: data.grossProfit,
+                            backgroundColor: chartColors[3],
+                            borderRadius: 8,
+                            borderWidth: 2,
+                            borderColor: '#000'
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: true,
+                            position: 'top',
+                            labels: {
+                                color: '#ffffff',
+                                font: {
+                                    size: 13,
+                                    family: 'Tajawal',
+                                    weight: '600'
+                                },
+                                padding: 15
+                            }
+                        },
+                        tooltip: {
+                            backgroundColor: 'rgba(26, 26, 26, 0.95)',
+                            titleColor: '#76B900',
+                            bodyColor: '#ffffff',
+                            borderColor: '#76B900',
+                            borderWidth: 1,
+                            padding: 12,
+                            cornerRadius: 8
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            grid: {
+                                color: 'rgba(118, 185, 0, 0.1)',
+                                drawBorder: false
+                            },
+                            ticks: {
+                                color: '#ffffff',
+                                font: {
+                                    family: 'Tajawal'
+                                }
+                            }
+                        },
+                        x: {
+                            grid: {
+                                display: false
+                            },
+                            ticks: {
+                                color: '#ffffff',
+                                font: {
+                                    family: 'Tajawal',
+                                    weight: '600'
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+
+            // Fill Summary Table
+            const tbody = document.getElementById('summaryTableBody');
+            tbody.innerHTML = '';
+            data.years.forEach((year, idx) => {
+                const row = `<tr>
+                    <td><strong>${year}</strong></td>
+                    <td>${data.revenue[idx]}</td>
+                    <td>${data.netIncome[idx]}</td>
+                    <td>${data.operatingIncome[idx]}</td>
+                    <td>${data.grossProfit[idx]}</td>
+                    <td>${data.eps[idx].toFixed(2)}</td>
+                </tr>`;
+                tbody.innerHTML += row;
+            });
+        }
+
+        // Initialize Profitability Charts
+        function initProfitabilityCharts() {
+            // Margins Line Chart
+            const ctx1 = document.getElementById('marginsLineChart').getContext('2d');
+            charts.marginsLine = new Chart(ctx1, {
+                type: 'line',
+                data: {
+                    labels: data.years,
+                    datasets: [
+                        {
+                            label: 'هامش الربح الإجمالي (%)',
+                            data: data.grossMargin,
+                            borderColor: chartColors[0],
+                            backgroundColor: chartColors[0] + '33',
+                            borderWidth: 3,
+                            fill: true,
+                            tension: 0.4,
+                            pointRadius: 5,
+                            pointHoverRadius: 7,
+                            pointBackgroundColor: chartColors[0],
+                            pointBorderColor: '#000',
+                            pointBorderWidth: 2
+                        },
+                        {
+                            label: 'هامش الدخل التشغيلي (%)',
+                            data: data.operatingMargin,
+                            borderColor: chartColors[1],
+                            backgroundColor: chartColors[1] + '33',
+                            borderWidth: 3,
+                            fill: true,
+                            tension: 0.4,
+                            pointRadius: 5,
+                            pointHoverRadius: 7,
+                            pointBackgroundColor: chartColors[1],
+                            pointBorderColor: '#000',
+                            pointBorderWidth: 2
+                        },
+                        {
+                            label: 'هامش صافي الدخل (%)',
+                            data: data.netMargin,
+                            borderColor: chartColors[2],
+                            backgroundColor: chartColors[2] + '33',
+                            borderWidth: 3,
+                            fill: true,
+                            tension: 0.4,
+                            pointRadius: 5,
+                            pointHoverRadius: 7,
+                            pointBackgroundColor: chartColors[2],
+                            pointBorderColor: '#000',
+                            pointBorderWidth: 2
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: true,
+                            position: 'top',
+                            labels: {
+                                color: '#ffffff',
+                                font: {
+                                    size: 13,
+                                    family: 'Tajawal',
+                                    weight: '600'
+                                },
+                                padding: 15
+                            }
+                        },
+                        tooltip: {
+                            backgroundColor: 'rgba(26, 26, 26, 0.95)',
+                            titleColor: '#76B900',
+                            bodyColor: '#ffffff',
+                            borderColor: '#76B900',
+                            borderWidth: 1,
+                            padding: 12,
+                            cornerRadius: 8
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            grid: {
+                                color: 'rgba(118, 185, 0, 0.1)',
+                                drawBorder: false
+                            },
+                            ticks: {
+                                color: '#ffffff',
+                                font: {
+                                    family: 'Tajawal'
+                                },
+                                callback: function(value) {
+                                    return value + '%';
+                                }
+                            }
+                        },
+                        x: {
+                            grid: {
+                                color: 'rgba(118, 185, 0, 0.1)',
+                                drawBorder: false
+                            },
+                            ticks: {
+                                color: '#ffffff',
+                                font: {
+                                    family: 'Tajawal',
+                                    weight: '600'
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+
+            // 2025 Margins Chart
+            const ctx2 = document.getElementById('margins2025Chart').getContext('2d');
+            charts.margins2025 = new Chart(ctx2, {
+                type: 'doughnut',
+                data: {
+                    labels: ['هامش الربح الإجمالي', 'هامش الدخل التشغيلي', 'هامش صافي الدخل'],
+                    datasets: [{
+                        data: [data.grossMargin[5], data.operatingMargin[5], data.netMargin[5]],
+                        backgroundColor: [chartColors[0], chartColors[1], chartColors[2]],
+                        borderWidth: 3,
+                        borderColor: '#000',
+                        hoverOffset: 15
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: true,
+                            position: 'bottom',
+                            labels: {
+                                color: '#ffffff',
+                                font: {
+                                    size: 12,
+                                    family: 'Tajawal',
+                                    weight: '600'
+                                },
+                                padding: 15
+                            }
+                        },
+                        tooltip: {
+                            backgroundColor: 'rgba(26, 26, 26, 0.95)',
+                            titleColor: '#76B900',
+                            bodyColor: '#ffffff',
+                            borderColor: '#76B900',
+                            borderWidth: 1,
+                            padding: 12,
+                            cornerRadius: 8,
+                            callbacks: {
+                                label: function(context) {
+                                    return context.label + ': ' + context.parsed + '%';
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+
+            // Expenses Chart
+            const ctx3 = document.getElementById('expensesChart').getContext('2d');
+            charts.expenses = new Chart(ctx3, {
+                type: 'bar',
+                data: {
+                    labels: data.years,
+                    datasets: [
+                        {
+                            label: 'البحث والتطوير (مليار $)',
+                            data: data.rdExpenses,
+                            backgroundColor: chartColors[4],
+                            borderRadius: 8,
+                            borderWidth: 2,
+                            borderColor: '#000'
+                        },
+                        {
+                            label: 'البيع والإدارة (مليار $)',
+                            data: data.sgaExpenses,
+                            backgroundColor: chartColors[3],
+                            borderRadius: 8,
+                            borderWidth: 2,
+                            borderColor: '#000'
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: true,
+                            position: 'top',
+                            labels: {
+                                color: '#ffffff',
+                                font: {
+                                    size: 13,
+                                    family: 'Tajawal',
+                                    weight: '600'
+                                },
+                                padding: 15
+                            }
+                        },
+                        tooltip: {
+                            backgroundColor: 'rgba(26, 26, 26, 0.95)',
+                            titleColor: '#76B900',
+                            bodyColor: '#ffffff',
+                            borderColor: '#76B900',
+                            borderWidth: 1,
+                            padding: 12,
+                            cornerRadius: 8
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            grid: {
+                                color: 'rgba(118, 185, 0, 0.1)',
+                                drawBorder: false
+                            },
+                            ticks: {
+                                color: '#ffffff',
+                                font: {
+                                    family: 'Tajawal'
+                                }
+                            }
+                        },
+                        x: {
+                            grid: {
+                                display: false
+                            },
+                            ticks: {
+                                color: '#ffffff',
+                                font: {
+                                    family: 'Tajawal',
+                                    weight: '600'
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+
+            // Fill Profitability Table
+            const tbody = document.getElementById('profitabilityTableBody');
+            tbody.innerHTML = '';
+            data.years.forEach((year, idx) => {
+                const row = `<tr>
+                    <td><strong>${year}</strong></td>
+                    <td>${data.grossMargin[idx]}%</td>
+                    <td>${data.operatingMargin[idx]}%</td>
+                    <td>${data.netMargin[idx]}%</td>
+                    <td>${data.rdExpenses[idx]}</td>
+                    <td>${data.sgaExpenses[idx]}</td>
+                </tr>`;
+                tbody.innerHTML += row;
+            });
+        }
+
+        // Initialize Balance Sheet Charts
+        function initBalanceSheetCharts() {
+            // Balance Pie Chart 2025
+            const ctx1 = document.getElementById('balancePieChart').getContext('2d');
+            charts.balancePie = new Chart(ctx1, {
+                type: 'pie',
+                data: {
+                    labels: ['إجمالي الأصول', 'إجمالي الالتزامات', 'حقوق المساهمين'],
+                    datasets: [{
+                        data: [data.totalAssets[5], data.totalLiabilities[5], data.totalEquity[5]],
+                        backgroundColor: [chartColors[0], chartColors[5], chartColors[1]],
+                        borderWidth: 3,
+                        borderColor: '#000',
+                        hoverOffset: 15
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: true,
+                            position: 'bottom',
+                            labels: {
+                                color: '#ffffff',
+                                font: {
+                                    size: 12,
+                                    family: 'Tajawal',
+                                    weight: '600'
+                                },
+                                padding: 15
+                            }
+                        },
+                        tooltip: {
+                            backgroundColor: 'rgba(26, 26, 26, 0.95)',
+                            titleColor: '#76B900',
+                            bodyColor: '#ffffff',
+                            borderColor: '#76B900',
+                            borderWidth: 1,
+                            padding: 12,
+                            cornerRadius: 8
+                        }
+                    }
+                }
+            });
+
+            // Assets Liabilities Equity Comparison
+            const ctx2 = document.getElementById('assetsLiabilitiesChart').getContext('2d');
+            charts.assetsLiabilities = new Chart(ctx2, {
+                type: 'bar',
+                data: {
+                    labels: data.years,
+                    datasets: [
+                        {
+                            label: 'إجمالي الأصول (مليار $)',
+                            data: data.totalAssets,
+                            backgroundColor: chartColors[0],
+                            borderRadius: 8,
+                            borderWidth: 2,
+                            borderColor: '#000'
+                        },
+                        {
+                            label: 'إجمالي الالتزامات (مليار $)',
+                            data: data.totalLiabilities,
+                            backgroundColor: chartColors[5],
+                            borderRadius: 8,
+                            borderWidth: 2,
+                            borderColor: '#000'
+                        },
+                        {
+                            label: 'حقوق المساهمين (مليار $)',
+                            data: data.totalEquity,
+                            backgroundColor: chartColors[1],
+                            borderRadius: 8,
+                            borderWidth: 2,
+                            borderColor: '#000'
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: true,
+                            position: 'top',
+                            labels: {
+                                color: '#ffffff',
+                                font: {
+                                    size: 12,
+                                    family: 'Tajawal',
+                                    weight: '600'
+                                },
+                                padding: 15
+                            }
+                        },
+                        tooltip: {
+                            backgroundColor: 'rgba(26, 26, 26, 0.95)',
+                            titleColor: '#76B900',
+                            bodyColor: '#ffffff',
+                            borderColor: '#76B900',
+                            borderWidth: 1,
+                            padding: 12,
+                            cornerRadius: 8
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            grid: {
+                                color: 'rgba(118, 185, 0, 0.1)',
+                                drawBorder: false
+                            },
+                            ticks: {
+                                color: '#ffffff',
+                                font: {
+                                    family: 'Tajawal'
+                                }
+                            }
+                        },
+                        x: {
+                            grid: {
+                                display: false
+                            },
+                            ticks: {
+                                color: '#ffffff',
+                                font: {
+                                    family: 'Tajawal',
+                                    weight: '600'
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+
+            // Balance Evolution Chart
+            const ctx3 = document.getElementById('balanceEvolutionChart').getContext('2d');
+            charts.balanceEvolution = new Chart(ctx3, {
+                type: 'line',
+                data: {
+                    labels: data.years,
+                    datasets: [
+                        {
+                            label: 'إجمالي الأصول (مليار $)',
+                            data: data.totalAssets,
+                            borderColor: chartColors[0],
+                            backgroundColor: chartColors[0] + '33',
+                            borderWidth: 3,
+                            fill: true,
+                            tension: 0.4,
+                            pointRadius: 5,
+                            pointHoverRadius: 7,
+                            pointBackgroundColor: chartColors[0],
+                            pointBorderColor: '#000',
+                            pointBorderWidth: 2
+                        },
+                        {
+                            label: 'حقوق المساهمين (مليار $)',
+                            data: data.totalEquity,
+                            borderColor: chartColors[1],
+                            backgroundColor: chartColors[1] + '33',
+                            borderWidth: 3,
+                            fill: true,
+                            tension: 0.4,
+                            pointRadius: 5,
+                            pointHoverRadius: 7,
+                            pointBackgroundColor: chartColors[1],
+                            pointBorderColor: '#000',
+                            pointBorderWidth: 2
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: true,
+                            position: 'top',
+                            labels: {
+                                color: '#ffffff',
+                                font: {
+                                    size: 13,
+                                    family: 'Tajawal',
+                                    weight: '600'
+                                },
+                                padding: 15
+                            }
+                        },
+                        tooltip: {
+                            backgroundColor: 'rgba(26, 26, 26, 0.95)',
+                            titleColor: '#76B900',
+                            bodyColor: '#ffffff',
+                            borderColor: '#76B900',
+                            borderWidth: 1,
+                            padding: 12,
+                            cornerRadius: 8
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            grid: {
+                                color: 'rgba(118, 185, 0, 0.1)',
+                                drawBorder: false
+                            },
+                            ticks: {
+                                color: '#ffffff',
+                                font: {
+                                    family: 'Tajawal'
+                                }
+                            }
+                        },
+                        x: {
+                            grid: {
+                                color: 'rgba(118, 185, 0, 0.1)',
+                                drawBorder: false
+                            },
+                            ticks: {
+                                color: '#ffffff',
+                                font: {
+                                    family: 'Tajawal',
+                                    weight: '600'
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+
+            // Fill Balance Sheet Table
+            const tbody = document.getElementById('balanceSheetTableBody');
+            tbody.innerHTML = '';
+            data.years.forEach((year, idx) => {
+                const row = `<tr>
+                    <td><strong>${year}</strong></td>
+                    <td>${data.totalAssets[idx]}</td>
+                    <td>${data.totalLiabilities[idx]}</td>
+                    <td>${data.totalEquity[idx]}</td>
+                    <td>${data.totalDebt[idx]}</td>
+                    <td>${data.cash[idx]}</td>
+                </tr>`;
+                tbody.innerHTML += row;
+            });
+        }
+
+        // Initialize Cash Flow Charts
+        function initCashFlowCharts() {
+            // Cash Flow Line Chart
+            const ctx1 = document.getElementById('cashFlowLineChart').getContext('2d');
+            charts.cashFlowLine = new Chart(ctx1, {
+                type: 'line',
+                data: {
+                    labels: data.years,
+                    datasets: [
+                        {
+                            label: 'التدفق النقدي التشغيلي (مليار $)',
+                            data: data.operatingCF,
+                            borderColor: chartColors[0],
+                            backgroundColor: chartColors[0] + '33',
+                            borderWidth: 3,
+                            fill: true,
+                            tension: 0.4,
+                            pointRadius: 5,
+                            pointHoverRadius: 7,
+                            pointBackgroundColor: chartColors[0],
+                            pointBorderColor: '#000',
+                            pointBorderWidth: 2
+                        },
+                        {
+                            label: 'التدفق النقدي الحر (مليار $)',
+                            data: data.freeCF,
+                            borderColor: chartColors[1],
+                            backgroundColor: chartColors[1] + '33',
+                            borderWidth: 3,
+                            fill: true,
+                            tension: 0.4,
+                            pointRadius: 5,
+                            pointHoverRadius: 7,
+                            pointBackgroundColor: chartColors[1],
+                            pointBorderColor: '#000',
+                            pointBorderWidth: 2
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: true,
+                            position: 'top',
+                            labels: {
+                                color: '#ffffff',
+                                font: {
+                                    size: 13,
+                                    family: 'Tajawal',
+                                    weight: '600'
+                                },
+                                padding: 15
+                            }
+                        },
+                        tooltip: {
+                            backgroundColor: 'rgba(26, 26, 26, 0.95)',
+                            titleColor: '#76B900',
+                            bodyColor: '#ffffff',
+                            borderColor: '#76B900',
+                            borderWidth: 1,
+                            padding: 12,
+                            cornerRadius: 8
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            grid: {
+                                color: 'rgba(118, 185, 0, 0.1)',
+                                drawBorder: false
+                            },
+                            ticks: {
+                                color: '#ffffff',
+                                font: {
+                                    family: 'Tajawal'
+                                }
+                            }
+                        },
+                        x: {
+                            grid: {
+                                color: 'rgba(118, 185, 0, 0.1)',
+                                drawBorder: false
+                            },
+                            ticks: {
+                                color: '#ffffff',
+                                font: {
+                                    family: 'Tajawal',
+                                    weight: '600'
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+
+            // Cash Flow Bar Chart
+            const ctx2 = document.getElementById('cashFlowBarChart').getContext('2d');
+            charts.cashFlowBar = new Chart(ctx2, {
+                type: 'bar',
+                data: {
+                    labels: data.years,
+                    datasets: [
+                        {
+                            label: 'التدفق التشغيلي (مليار $)',
+                            data: data.operatingCF,
+                            backgroundColor: chartColors[0],
+                            borderRadius: 8,
+                            borderWidth: 2,
+                            borderColor: '#000'
+                        },
+                        {
+                            label: 'التدفق الحر (مليار $)',
+                            data: data.freeCF,
+                            backgroundColor: chartColors[1],
+                            borderRadius: 8,
+                            borderWidth: 2,
+                            borderColor: '#000'
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: true,
+                            position: 'top',
+                            labels: {
+                                color: '#ffffff',
+                                font: {
+                                    size: 13,
+                                    family: 'Tajawal',
+                                    weight: '600'
+                                },
+                                padding: 15
+                            }
+                        },
+                        tooltip: {
+                            backgroundColor: 'rgba(26, 26, 26, 0.95)',
+                            titleColor: '#76B900',
+                            bodyColor: '#ffffff',
+                            borderColor: '#76B900',
+                            borderWidth: 1,
+                            padding: 12,
+                            cornerRadius: 8
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            grid: {
+                                color: 'rgba(118, 185, 0, 0.1)',
+                                drawBorder: false
+                            },
+                            ticks: {
+                                color: '#ffffff',
+                                font: {
+                                    family: 'Tajawal'
+                                }
+                            }
+                        },
+                        x: {
+                            grid: {
+                                display: false
+                            },
+                            ticks: {
+                                color: '#ffffff',
+                                font: {
+                                    family: 'Tajawal',
+                                    weight: '600'
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+
+            // Cash Flow vs Net Income
+            const ctx3 = document.getElementById('cashFlowVsNetIncomeChart').getContext('2d');
+            charts.cashFlowVsNetIncome = new Chart(ctx3, {
+                type: 'line',
+                data: {
+                    labels: data.years,
+                    datasets: [
+                        {
+                            label: 'التدفق النقدي التشغيلي (مليار $)',
+                            data: data.operatingCF,
+                            borderColor: chartColors[0],
+                            backgroundColor: 'transparent',
+                            borderWidth: 3,
+                            fill: false,
+                            tension: 0.4,
+                            pointRadius: 5,
+                            pointHoverRadius: 7,
+                            pointBackgroundColor: chartColors[0],
+                            pointBorderColor: '#000',
+                            pointBorderWidth: 2
+                        },
+                        {
+                            label: 'صافي الدخل (مليار $)',
+                            data: data.netIncome,
+                            borderColor: chartColors[2],
+                            backgroundColor: 'transparent',
+                            borderWidth: 3,
+                            fill: false,
+                            tension: 0.4,
+                            pointRadius: 5,
+                            pointHoverRadius: 7,
+                            pointBackgroundColor: chartColors[2],
+                            pointBorderColor: '#000',
+                            pointBorderWidth: 2
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: true,
+                            position: 'top',
+                            labels: {
+                                color: '#ffffff',
+                                font: {
+                                    size: 13,
+                                    family: 'Tajawal',
+                                    weight: '600'
+                                },
+                                padding: 15
+                            }
+                        },
+                        tooltip: {
+                            backgroundColor: 'rgba(26, 26, 26, 0.95)',
+                            titleColor: '#76B900',
+                            bodyColor: '#ffffff',
+                            borderColor: '#76B900',
+                            borderWidth: 1,
+                            padding: 12,
+                            cornerRadius: 8
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            grid: {
+                                color: 'rgba(118, 185, 0, 0.1)',
+                                drawBorder: false
+                            },
+                            ticks: {
+                                color: '#ffffff',
+                                font: {
+                                    family: 'Tajawal'
+                                }
+                            }
+                        },
+                        x: {
+                            grid: {
+                                color: 'rgba(118, 185, 0, 0.1)',
+                                drawBorder: false
+                            },
+                            ticks: {
+                                color: '#ffffff',
+                                font: {
+                                    family: 'Tajawal',
+                                    weight: '600'
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+
+            // Fill Cash Flow Table
+            const tbody = document.getElementById('cashFlowTableBody');
+            tbody.innerHTML = '';
+            data.years.forEach((year, idx) => {
+                const row = `<tr>
+                    <td><strong>${year}</strong></td>
+                    <td>${data.operatingCF[idx]}</td>
+                    <td>${data.freeCF[idx]}</td>
+                    <td>${data.netIncome[idx]}</td>
+                    <td>${data.cash[idx]}</td>
+                </tr>`;
+                tbody.innerHTML += row;
+            });
+        }
+
+        // Initialize Comparison Charts
+        function initComparisonCharts() {
+            compareYears();
+        }
+
+        function compareYears() {
+            const year1Idx = parseInt(document.getElementById('year1').value);
+            const year2Idx = parseInt(document.getElementById('year2').value);
+            const year1 = data.years[year1Idx];
+            const year2 = data.years[year2Idx];
+
+            // Update headers
+            document.getElementById('compYear1Header').textContent = year1;
+            document.getElementById('compYear2Header').textContent = year2;
+
+            // Calculate differences and create KPIs
+            const metrics = [
+                { name: 'الإيرادات', key: 'revenue', unit: 'مليار $' },
+                { name: 'صافي الدخل', key: 'netIncome', unit: 'مليار $' },
+                { name: 'ربحية السهم', key: 'eps', unit: '$' },
+                { name: 'العائد على حقوق المساهمين', key: 'roe', unit: '%' }
+            ];
+
+            const kpisContainer = document.getElementById('comparisonKPIs');
+            kpisContainer.innerHTML = '';
+
+            metrics.forEach((metric, idx) => {
+                const val1 = data[metric.key][year1Idx];
+                const val2 = data[metric.key][year2Idx];
+                const diff = val1 - val2;
+                const pctChange = val2 !== 0 ? ((diff / val2) * 100).toFixed(1) : 0;
+                const isPositive = diff >= 0;
+                const colors = ['blue', 'green', 'purple', 'orange'];
+
+                const kpiCard = `
+                    <div class="kpi-card ${colors[idx]}">
+                        <div class="kpi-header">
+                            <span class="kpi-title">${metric.name}</span>
+                            <div class="kpi-icon">${isPositive ? '📈' : '📉'}</div>
+                        </div>
+                        <div class="kpi-value">${val1.toFixed(2)} ${metric.unit}</div>
+                        <div class="kpi-subtitle ${isPositive ? 'positive' : 'negative'}">
+                            ${isPositive ? '+' : ''}${diff.toFixed(2)} (${isPositive ? '+' : ''}${pctChange}%)
+                        </div>
+                    </div>
+                `;
+                kpisContainer.innerHTML += kpiCard;
+            });
+
+            // Update comparison charts
+            if (charts.comparisonRevenue) {
+                charts.comparisonRevenue.destroy();
+            }
+            if (charts.comparisonMargins) {
+                charts.comparisonMargins.destroy();
+            }
+
+            // Revenue Comparison Chart
+            const ctx1 = document.getElementById('comparisonRevenueChart').getContext('2d');
+            charts.comparisonRevenue = new Chart(ctx1, {
+                type: 'bar',
+                data: {
+                    labels: ['الإيرادات', 'صافي الدخل', 'الدخل التشغيلي', 'إجمالي الربح'],
+                    datasets: [
+                        {
+                            label: year1,
+                            data: [
+                                data.revenue[year1Idx],
+                                data.netIncome[year1Idx],
+                                data.operatingIncome[year1Idx],
+                                data.grossProfit[year1Idx]
+                            ],
+                            backgroundColor: chartColors[0],
+                            borderRadius: 8,
+                            borderWidth: 2,
+                            borderColor: '#000'
+                        },
+                        {
+                            label: year2,
+                            data: [
+                                data.revenue[year2Idx],
+                                data.netIncome[year2Idx],
+                                data.operatingIncome[year2Idx],
+                                data.grossProfit[year2Idx]
+                            ],
+                            backgroundColor: chartColors[1],
+                            borderRadius: 8,
+                            borderWidth: 2,
+                            borderColor: '#000'
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: true,
+                            position: 'top',
+                            labels: {
+                                color: '#ffffff',
+                                font: {
+                                    size: 13,
+                                    family: 'Tajawal',
+                                    weight: '600'
+                                },
+                                padding: 15
+                            }
+                        },
+                        tooltip: {
+                            backgroundColor: 'rgba(26, 26, 26, 0.95)',
+                            titleColor: '#76B900',
+                            bodyColor: '#ffffff',
+                            borderColor: '#76B900',
+                            borderWidth: 1,
+                            padding: 12,
+                            cornerRadius: 8
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            grid: {
+                                color: 'rgba(118, 185, 0, 0.1)',
+                                drawBorder: false
+                            },
+                            ticks: {
+                                color: '#ffffff',
+                                font: {
+                                    family: 'Tajawal'
+                                }
+                            }
+                        },
+                        x: {
+                            grid: {
+                                display: false
+                            },
+                            ticks: {
+                                color: '#ffffff',
+                                font: {
+                                    family: 'Tajawal',
+                                    weight: '600'
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+
+            // Margins Comparison Chart
+            const ctx2 = document.getElementById('comparisonMarginsChart').getContext('2d');
+            charts.comparisonMargins = new Chart(ctx2, {
+                type: 'radar',
+                data: {
+                    labels: ['هامش الربح الإجمالي', 'هامش الدخل التشغيلي', 'هامش صافي الدخل', 'العائد على الأصول', 'العائد على حقوق المساهمين'],
+                    datasets: [
+                        {
+                            label: year1,
+                            data: [
+                                data.grossMargin[year1Idx],
+                                data.operatingMargin[year1Idx],
+                                data.netMargin[year1Idx],
+                                data.roa[year1Idx],
+                                data.roe[year1Idx]
+                            ],
+                            borderColor: chartColors[0],
+                            backgroundColor: chartColors[0] + '44',
+                            borderWidth: 3,
+                            pointRadius: 5,
+                            pointBackgroundColor: chartColors[0],
+                            pointBorderColor: '#000',
+                            pointBorderWidth: 2
+                        },
+                        {
+                            label: year2,
+                            data: [
+                                data.grossMargin[year2Idx],
+                                data.operatingMargin[year2Idx],
+                                data.netMargin[year2Idx],
+                                data.roa[year2Idx],
+                                data.roe[year2Idx]
+                            ],
+                            borderColor: chartColors[1],
+                            backgroundColor: chartColors[1] + '44',
+                            borderWidth: 3,
+                            pointRadius: 5,
+                            pointBackgroundColor: chartColors[1],
+                            pointBorderColor: '#000',
+                            pointBorderWidth: 2
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: true,
+                            position: 'top',
+                            labels: {
+                                color: '#ffffff',
+                                font: {
+                                    size: 13,
+                                    family: 'Tajawal',
+                                    weight: '600'
+                                },
+                                padding: 15
+                            }
+                        },
+                        tooltip: {
+                            backgroundColor: 'rgba(26, 26, 26, 0.95)',
+                            titleColor: '#76B900',
+                            bodyColor: '#ffffff',
+                            borderColor: '#76B900',
+                            borderWidth: 1,
+                            padding: 12,
+                            cornerRadius: 8
+                        }
+                    },
+                    scales: {
+                        r: {
+                            beginAtZero: true,
+                            grid: {
+                                color: 'rgba(118, 185, 0, 0.2)'
+                            },
+                            angleLines: {
+                                color: 'rgba(118, 185, 0, 0.2)'
+                            },
+                            pointLabels: {
+                                color: '#ffffff',
+                                font: {
+                                    family: 'Tajawal',
+                                    size: 11
+                                }
+                            },
+                            ticks: {
+                                color: '#ffffff',
+                                backdropColor: 'transparent',
+                                font: {
+                                    family: 'Tajawal'
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+
+            // Fill comparison table
+            const tbody = document.getElementById('comparisonTableBody');
+            tbody.innerHTML = '';
+
+            const comparisonMetrics = [
+                { name: 'الإيرادات (مليار $)', key: 'revenue' },
+                { name: 'صافي الدخل (مليار $)', key: 'netIncome' },
+                { name: 'الدخل التشغيلي (مليار $)', key: 'operatingIncome' },
+                { name: 'إجمالي الربح (مليار $)', key: 'grossProfit' },
+                { name: 'هامش الربح الإجمالي (%)', key: 'grossMargin' },
+                { name: 'هامش الدخل التشغيلي (%)', key: 'operatingMargin' },
+                { name: 'هامش صافي الدخل (%)', key: 'netMargin' },
+                { name: 'إجمالي الأصول (مليار $)', key: 'totalAssets' },
+                { name: 'حقوق المساهمين (مليار $)', key: 'totalEquity' },
+                { name: 'التدفق النقدي التشغيلي (مليار $)', key: 'operatingCF' },
+                { name: 'التدفق النقدي الحر (مليار $)', key: 'freeCF' },
+                { name: 'ربحية السهم ($)', key: 'eps' },
+                { name: 'العائد على الأصول (%)', key: 'roa' },
+                { name: 'العائد على حقوق المساهمين (%)', key: 'roe' }
+            ];
+
+            comparisonMetrics.forEach(metric => {
+                const val1 = data[metric.key][year1Idx];
+                const val2 = data[metric.key][year2Idx];
+                const diff = val1 - val2;
+                const pctChange = val2 !== 0 ? ((diff / val2) * 100).toFixed(1) : 0;
+                const isPositive = diff >= 0;
+
+                const row = `<tr>
+                    <td><strong>${metric.name}</strong></td>
+                    <td>${val1.toFixed(2)}</td>
+                    <td>${val2.toFixed(2)}</td>
+                    <td class="${isPositive ? 'positive' : 'negative'}">${isPositive ? '+' : ''}${diff.toFixed(2)}</td>
+                    <td class="${isPositive ? 'positive' : 'negative'}">${isPositive ? '+' : ''}${pctChange}%</td>
+                </tr>`;
+                tbody.innerHTML += row;
+            });
+        }
+
+        // Initialize all charts on page load
+        window.addEventListener('DOMContentLoaded', () => {
+            initDashboardCharts();
+            initProfitabilityCharts();
+            initBalanceSheetCharts();
+            initCashFlowCharts();
+            initComparisonCharts();
+        });
+    </script>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                تم التطوير بواسطة <strong>نواف الشهري</strong> © 2025 | جميع الحقوق محفوظة
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
